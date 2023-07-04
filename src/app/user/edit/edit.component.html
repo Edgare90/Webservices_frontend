@@ -1,0 +1,63 @@
+<div class="container">
+  
+    <div class="d-flex justify-content-between">
+      <h4>Edita Usuario</h4>
+      <a href="#" routerLink="/user/index" class="btn btn-primaryt">Regresar</a>
+    </div>
+
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="title">Name:</label>
+              <input
+                formControlName="nombre"
+                [(ngModel)]="person.nombre"
+                id="nombre"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
+                  <div *ngIf="this.form.get('nombre')?.errors?.['required']">*El nombre es requerido.</div>
+                  <div *ngIf="this.form.get('nombre')?.errors?.['pattern']">*El nombre solo puede contener letras.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="email">Email:</label>
+              <input
+                formControlName="email"
+                [(ngModel)]="person.email"
+                id="email"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                  <div *ngIf="this.form.get('email')?.errors?.['required']">*Email es requerido.</div>
+                  <div *ngIf="this.form.get('email')?.errors?.['email']">*El email debe ser una direccion valida.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="phone">Password:</label>
+              <input
+                [(ngModel)]="person.password"
+                formControlName="password"
+                id="password"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                  <div *ngIf="this.form.get('password')?.errors?.['required']">*Password es requerido.</div>
+                  <div *ngIf="this.form.get('password')?.errors?.['pattern']">*Pasword solo puede contener letras.</div>
+              </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+    </form>
+</div>

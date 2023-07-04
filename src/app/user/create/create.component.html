@@ -1,0 +1,58 @@
+<div>
+
+    <div class="d-flex justify-content-between">
+      <h4>Formulario de Alta de Usuario</h4>
+      <a href="#" routerLink="/user/index" class="btn btn-primaryt">Regresar</a>
+    </div>
+  
+    <hr/>
+  
+      <form [formGroup]="form" (ngSubmit)="submit()">
+  
+          <div class="form-group row">
+              <div class="col-md-6 ">
+                <label for="title">Nombre:</label>
+                <input
+                  formControlName="nombre"
+                  id="nombre"
+                  type="text"
+                  class="form-control">
+                    
+                  <div *ngIf="this.form.get('name')?.errors?.['required']">*El nombre es Requerido.</div>
+                  <div *ngIf="this.form.get('name')?.errors?.['pattern']">*El nombre solo puede tener letras.</div>
+                
+              </div>
+          </div>
+  
+          <div class="form-group row">
+              <div class="col-md-6 ">
+                <label for="email">Email:</label>
+                <input
+                  formControlName="email"
+                  id="email"
+                  type="text"
+                  class="form-control">
+                
+                    <div *ngIf="this.form.get('email')?.errors?.['required']">*Email Obligatorio.</div>
+                    <div *ngIf="this.form.get('email')?.errors?.['email']">*El email debe ser una direccion valida.</div>
+               
+              </div>
+          </div>
+  
+          <div class="form-group row">
+              <div class="col-md-6 ">
+                <label for="pass">Password:</label>
+                <input
+                  formControlName="password"
+                  id="password"
+                  type="text"
+                  class="form-control">
+                    <div *ngIf="this.form.get('password')?.errors?.['required']">*Password es obligatorio.</div>
+                    <div *ngIf="this.form.get('password')?.errors?.['pattern']">*El pasword solo debe tener letras.</div>
+                
+              </div>
+          </div>
+  
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+      </form>
+  </div>

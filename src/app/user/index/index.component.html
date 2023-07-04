@@ -1,0 +1,27 @@
+<section>
+
+    <div class="d-flex justify-content-between">
+      <h4>Listado de  Usuarios</h4>
+      <a routerLink="/user/create" class="btn btn-success">Crear Nuevo Usuario</a>
+    </div>
+
+    <br>
+    
+    <table class="table ">
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Password</th>
+        <th width="220px">-----</th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+        <td>
+          <a href="#" [routerLink]="['/user/', 'edit', user.id  ]" class="btn btn-primary">Edit</a>
+          <button type="button" (click)="deletePerson(user.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+ </section>
